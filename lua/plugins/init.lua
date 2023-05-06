@@ -286,6 +286,9 @@ local plugins = {
   {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("utils").load_mappings("illuminate")
+    end,
   },
   {
     "mfussenegger/nvim-dap",

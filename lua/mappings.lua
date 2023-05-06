@@ -66,6 +66,23 @@ local M = {
   },
 }
 
+M.illuminate = {
+  n = {
+    ["]]"] = {
+      function()
+        require("illuminate").goto_next_reference(true)
+      end,
+      "goto next reference",
+    },
+    ["[["] = {
+      function()
+        require("illuminate").goto_prev_reference(true)
+      end,
+      "goto prev reference",
+    },
+  },
+}
+
 M.comment = {
   -- toggle comment in both modes
   n = {
@@ -234,9 +251,6 @@ M.telescope = {
 
     -- pick a hidden term
     ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "pick hidden term" },
-
-    -- theme switcher
-    ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
   },
 }
 
@@ -336,6 +350,23 @@ M.gitsigns = {
         require("gitsigns").toggle_deleted()
       end,
       "Toggle deleted",
+    },
+  },
+}
+
+M.dap = {
+  n = {
+    ["<leader>db"] = {
+      "<cmd>DapToggleBreakpoint<CR>",
+      "Toggle breakpint",
+    },
+    ["<leader>dus"] = {
+      function()
+        local widgets = require("dap.ui.widgets")
+        local sidebar = widgets.sidebar(widgets.scopes)
+        sidebar.open()
+      end,
+      "Open debugging sidebar",
     },
   },
 }
