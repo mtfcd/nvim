@@ -134,7 +134,7 @@ M.lspconfig = {
       "lsp implementation",
     },
 
-    ["<leader>ls"] = {
+    ["<leader>s"] = {
       function()
         vim.lsp.buf.signature_help()
       end,
@@ -169,7 +169,7 @@ M.lspconfig = {
       "lsp references",
     },
 
-    ["<leader>f"] = {
+    ["<leader>e"] = {
       function()
         vim.diagnostic.open_float({ border = "rounded" })
       end,
@@ -230,7 +230,7 @@ M.lspconfig = {
 M.neotree = {
   n = {
     -- toggle
-    ["<leader>e"] = { ":Neotree filesystem reveal<CR>", "reveal in filestree", { silent = true } },
+    ["<leader>l"] = { ":Neotree filesystem reveal<CR>", "reveal in filestree", { silent = true } },
   },
 }
 
