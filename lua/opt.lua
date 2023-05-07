@@ -6,7 +6,7 @@ g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
 g.mapleader = " "
-g.maplocalleader = ' '
+g.maplocalleader = " "
 
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
@@ -32,7 +32,7 @@ opt.numberwidth = 2
 opt.ruler = false
 
 -- disable nvim intro
-opt.shortmess:append "sI"
+opt.shortmess:append("sI")
 
 opt.signcolumn = "yes"
 opt.splitbelow = true
@@ -46,13 +46,6 @@ opt.updatetime = 250
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
-opt.whichwrap:append "<>[]hl"
+opt.whichwrap:append("<>[]hl")
 
-
--- add binaries installed by mason.nvim to path
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath "data" .. "/mason/bin"
-
-print(vim.fn.stdpath "data" .. "/mason/bin")
-
-require("utils").load_mappings "genaral"
+require("utils").load_mappings("genaral")

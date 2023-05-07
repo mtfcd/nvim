@@ -66,6 +66,12 @@ local M = {
   },
 }
 
+M.undo = {
+  n = {
+    ["<leader>tu"] = { ":Undotreetoggle<CR>", desc = "[t]oggle [u]ndotree" },
+  },
+}
+
 M.illuminate = {
   n = {
     ["]]"] = {
