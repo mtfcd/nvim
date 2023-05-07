@@ -110,10 +110,8 @@ return {
     "simrat39/rust-tools.nvim",
     ft = "rust",
     dependencies = "neovim/nvim-lspconfig",
-    opts = function()
-      return require("plugins.configs.rust-tools")
-    end,
-    config = function(_, opts)
+    config = function()
+      local opts = require("plugins.configs.rust-tools")
       require("rust-tools").setup(opts)
     end,
   },
@@ -144,6 +142,9 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
+    config = function()
+      require("utils").load_mappings("dap")
+    end,
   },
   {
     "folke/which-key.nvim",

@@ -112,6 +112,12 @@ M.lspconfig = {
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
   n = {
+    ["<leader>ha"] = {
+      function()
+        require("rust-tools").hover_actions.hover_actions()
+      end,
+      "hover actions",
+    },
     ["gD"] = {
       function()
         vim.lsp.buf.declaration()
@@ -231,6 +237,10 @@ M.lspconfig = {
       "list workspace folders",
     },
   },
+}
+
+M.rust = {
+  n = {},
 }
 
 M.neotree = {
