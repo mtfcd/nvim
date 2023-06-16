@@ -2,6 +2,32 @@ local M = require("plugins.configs.lspconfig")
 local ensure_installed = vim.tbl_keys(M.servers)
 return {
   {
+    "b0o/schemastore.nvim",
+    ft = { "json", "yaml" },
+    config = function()
+      local lspconfig = require("lspconfig")
+      lspconfig.jsonls.setup({
+        on_attach = M.on_attach(),
+        capabilities = M.capabilities,
+        settings = {
+          json = {
+            schemas = require("schemastore").json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      })
+      lspconfig.yamlls.setup({
+        on_attach = M.on_attach(),
+        capabilities = M.capabilities,
+        settings = {
+          yaml = {
+            schemas = require("schemastore").yaml.schemas(),
+          },
+        },
+      })
+    end,
+  },
+  {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
     config = function()

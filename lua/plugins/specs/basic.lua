@@ -2,29 +2,48 @@ return {
   "nvim-lua/plenary.nvim",
   "nvim-tree/nvim-web-devicons",
   {
+    "lukas-reineke/indent-blankline.nvim",
+    init = function()
+      require("utils").lazy_load("indent-blankline.nvim")
+    end,
+    config = function()
+      require("utils").load_mappings("blankline")
+      require("indent_blankline").setup({
+        indentline_enabled = 1,
+        show_trailing_blankline_indent = false,
+        show_first_indent_level = false,
+        show_current_context = true,
+        show_current_context_start = true,
+      })
+    end,
+  },
+  {
     "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("onedark")
+      require("onedark").setup({
+        style = "darker",
+      })
+      require("onedark").load()
     end,
   },
   {
     "mbbill/undotree",
     keys = "<leader>tu",
-    cmd = "UndotreeToggle",
+    cmd = "Undotreetoggle",
     init = function()
-      vim.keymap.set("n", "<leader>tu", vim.cmd.UndotreeToggle, { desc = "toggle [u]ndotree" })
+      vim.keymap.set("n", "<leader>tu", vim.cmd.undotreetoggle, { desc = "toggle [u]ndotree" })
     end,
     config = function()
-      vim.g.undotree_SplitWidth = 50
+      vim.g.undotree_splitwidth = 50
     end,
   },
   {
-    -- Set lualine as statusline
+    -- set lualine as statusline
     "nvim-lualine/lualine.nvim",
     lazy = false,
-    -- See `:help lualine.txt`
+    -- see `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = true,
@@ -42,36 +61,10 @@ return {
       },
     },
   },
-  -- git stuff
-  {
-    "lewis6991/gitsigns.nvim",
-    ft = { "gitcommit", "diff" },
-    init = function()
-      -- load gitsigns only when a git file is opened
-      vim.api.nvim_create_autocmd({ "BufRead" }, {
-        group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
-        callback = function()
-          vim.fn.system("git -C " .. '"' .. vim.fn.expand("%:p:h") .. '"' .. " rev-parse")
-          if vim.v.shell_error == 0 then
-            vim.api.nvim_del_augroup_by_name("GitSignsLazyLoad")
-            vim.schedule(function()
-              require("lazy").load({ plugins = { "gitsigns.nvim" } })
-            end)
-          end
-        end,
-      })
-    end,
-    opts = function()
-      return require("plugins.configs.gitsigns")
-    end,
-    config = function(_, opts)
-      require("gitsigns").setup(opts)
-    end,
-  },
   {
     "nvim-treesitter/nvim-treesitter",
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
+    cmd = { "Tsinstall", "Tsbufenable", "Tsbufdisable", "Tsmoduleinfo" },
+    build = ":tsupdate",
     init = function()
       require("utils").lazy_load("nvim-treesitter")
     end,
@@ -97,13 +90,13 @@ return {
     end,
   },
   {
-    "numToStr/Comment.nvim",
+    "numtostr/comment.nvim",
     keys = { "gcc", "gbc" },
     init = function()
       require("utils").load_mappings("comment")
     end,
     config = function()
-      require("Comment").setup()
+      require("comment").setup()
     end,
   },
   {
@@ -116,10 +109,21 @@ return {
     end,
   },
   {
+    "leoluz/nvim-dap-go",
+    ft = "go",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
+    config = function()
+      require("dap-go").setup()
+      require("utils").load_mappings("dap_go")
+    end,
+  },
+  {
     "akinsho/bufferline.nvim",
     version = "v3.*",
     dependencies = "nvim-tree/nvim-web-devicons",
-    event = "BufAdd",
+    event = "bufadd",
     config = function()
       require("bufferline").setup()
     end,
@@ -134,8 +138,8 @@ return {
     end,
   },
   {
-    "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
+    "rrethy/vim-illuminate",
+    event = { "bufreadpost", "bufnewfile" },
     config = function()
       require("utils").load_mappings("illuminate")
     end,
@@ -144,6 +148,24 @@ return {
     "mfussenegger/nvim-dap",
     config = function()
       require("utils").load_mappings("dap")
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap" },
+    init = function()
+      local dap = require("dap")
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        require("utils").lazy_load("nvim-dap-ui")
+        require("dapui").setup()
+        require("dapui").open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        require("dapui").close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        require("dapui").close()
+      end
     end,
   },
   {

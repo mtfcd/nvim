@@ -2,7 +2,18 @@ local M = {}
 M.servers = {
   html = {},
   cssls = {},
-  gopls = {},
+  gopls = {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    settings = {
+      completeUnimported = true,
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
+  yamlls = {},
   tsserver = {},
   lua_ls = {
     settings = {

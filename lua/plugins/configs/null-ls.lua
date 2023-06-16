@@ -8,6 +8,7 @@ local sources = {
   formatting.stylua,
   formatting.rustfmt,
   formatting.gofmt,
+  formatting.goimports_reviser,
 }
 
 null_ls.setup({

@@ -12,6 +12,8 @@ local M = {
       ["<C-l>"] = { "<Right>", "move right" },
       ["<C-j>"] = { "<Down>", "move down" },
       ["<C-k>"] = { "<Up>", "move up" },
+
+      ["jk"] = { "<ESC>", "ESC" },
     },
 
     n = {
@@ -161,9 +163,7 @@ M.lspconfig = {
     },
 
     ["<leader>ra"] = {
-      function()
-        require("nvchad_ui.renamer").open()
-      end,
+      vim.lsp.buf.rename,
       "lsp rename",
     },
 
@@ -384,7 +384,47 @@ M.dap = {
       end,
       "Open debugging sidebar",
     },
+    ["<F5>"] = {
+      function()
+        require("dap").continue()
+      end,
+      "debug continue",
+    },
+    ["<F1>"] = {
+      function()
+        require("dap").step_into()
+      end,
+      "debug step_into",
+    },
+    ["<F2>"] = {
+      function()
+        require("dap").step_over()
+      end,
+      "debug step_over",
+    },
+    ["<F3>"] = {
+      function()
+        require("dap").step_out()
+      end,
+      "debug step_out",
+    },
   },
 }
 
+M.dap_go = {
+  n = {
+    ["<leader>dgt"] = {
+      function()
+        require("dap-go").debug_test()
+      end,
+      "Debug go test",
+    },
+    ["<leader>dgl"] = {
+      function()
+        require("dap-go").debug_last_test()
+      end,
+      "Debug last go test",
+    },
+  },
+}
 return M
