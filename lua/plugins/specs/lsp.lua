@@ -31,16 +31,14 @@ return {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
     config = function()
-      require("mason").setup({
-        ensure_installed = ensure_installed,
-      })
+      require("mason").setup()
 
       -- custom nvchad cmd to install all mason binaries listed
       vim.api.nvim_create_user_command("MasonInstallAll", function()
         vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
       end, {})
 
-      vim.g.mason_binaries_list = ensure_installed
+      -- vim.g.mason_binaries_list = ensure_installed
     end,
   },
   {
@@ -66,10 +64,10 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         config = function()
-          require("mason").setup({
+          require("mason").setup()
+          require("mason-lspconfig").setup({
             ensure_installed = ensure_installed,
           })
-          require("mason-lspconfig").setup()
         end,
       },
     },

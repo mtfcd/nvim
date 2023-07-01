@@ -2,6 +2,7 @@ local M = {}
 M.servers = {
   html = {},
   cssls = {},
+  pyright = {},
   gopls = {
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
