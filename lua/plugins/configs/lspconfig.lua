@@ -1,6 +1,7 @@
 local M = {}
 M.servers = {
   html = {},
+  marksman = {},
   cssls = {},
   pyright = {},
   gopls = {

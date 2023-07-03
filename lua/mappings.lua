@@ -340,11 +340,23 @@ M.gitsigns = {
     },
 
     -- Actions
-    ["<leader>rh"] = {
+    ["<leader>hr"] = {
       function()
         require("gitsigns").reset_hunk()
       end,
       "Reset hunk",
+    },
+    ["<leader>hs"] = {
+      function()
+        require("gitsigns").stage_hunk()
+      end,
+      "Stage hunk",
+    },
+    ["<leader>hu"] = {
+      function()
+        require("gitsigns").undo_stage_hunk()
+      end,
+      "undo stage hunk",
     },
 
     ["<leader>ph"] = {
@@ -366,6 +378,20 @@ M.gitsigns = {
         require("gitsigns").toggle_deleted()
       end,
       "Toggle deleted",
+    },
+  },
+  v = {
+    ["<leader>hr"] = {
+      function()
+        require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end,
+      "Reset hunk",
+    },
+    ["<leader>hs"] = {
+      function()
+        require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end,
+      "Stage hunk",
     },
   },
 }
