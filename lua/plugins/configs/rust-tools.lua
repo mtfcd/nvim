@@ -21,6 +21,13 @@ local options = {
   server = {
     on_attach = on_attach,
     capabilities = capabilities,
+    settings = {
+      ["rust-analyzer"] = {
+        check = {
+          command = "clippy",
+        },
+      },
+    },
   },
   tools = {
     hover_actions = {
