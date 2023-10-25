@@ -3,18 +3,13 @@ return {
   "nvim-tree/nvim-web-devicons",
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     init = function()
       require("utils").lazy_load("indent-blankline.nvim")
     end,
     config = function()
       require("utils").load_mappings("blankline")
-      require("indent_blankline").setup({
-        indentline_enabled = 1,
-        show_trailing_blankline_indent = false,
-        show_first_indent_level = false,
-        show_current_context = true,
-        show_current_context_start = true,
-      })
+      require("ibl").setup()
     end,
   },
   {
