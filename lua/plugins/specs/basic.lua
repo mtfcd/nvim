@@ -64,7 +64,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     cmd = { "Tsinstall", "Tsbufenable", "Tsbufdisable", "Tsmoduleinfo" },
-    build = ":tsupdate",
+    build = ":TSUpdate",
     init = function()
       require("utils").lazy_load("nvim-treesitter")
     end,

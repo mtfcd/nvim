@@ -246,7 +246,7 @@ M.rust = {
 M.neotree = {
   n = {
     -- toggle
-    ["<leader>l"] = { ":Neotree filesystem reveal<CR>", "reveal in filestree", { silent = true } },
+    ["<leader>l"] = { "<cmd>Neotree toggle<cr>", "reveal in filestree", { silent = true } },
   },
 }
 
