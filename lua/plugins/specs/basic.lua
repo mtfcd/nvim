@@ -86,12 +86,12 @@ return {
   },
   {
     "numtostr/comment.nvim",
-    keys = { "gcc", "gbc" },
+    keys = { "<leader>/", "gcc", "gbc" },
     init = function()
       require("utils").load_mappings("comment")
     end,
     config = function()
-      require("comment").setup()
+      require("Comment").setup()
     end,
   },
   {
