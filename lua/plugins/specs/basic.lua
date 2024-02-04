@@ -173,4 +173,17 @@ return {
       require("which-key").setup()
     end,
   },
+  {
+    dir = "/Users/cc/codes/rest.nvim",
+    ft = "http",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("rest-nvim").setup({
+        result_split_horizontal = true,
+        result = {
+          show_curl_command = false,
+        }
+      })
+    end
+  }
 }

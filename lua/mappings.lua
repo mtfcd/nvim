@@ -47,6 +47,8 @@ local M = {
       ["<S-h>"] = { ":bprevious<CR>", "previous buffer", { noremap = true, silent = true } },
       ["<S-l>"] = { ":bnext<CR>", "next buffer", { noremap = true, silent = true } },
       ["<leader>x"] = { ":bd<CR>", "delete buffer", { noremap = true, silent = true } },
+      ["<leader>er"] = { "<Plug>RestNvim", "execute request" },
+      ["<leader>ep"] = { "<Plug>RestNvimPreview", "preview curl" },
     },
 
     t = {
@@ -56,6 +58,7 @@ local M = {
     v = {
       ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "move up", opts = { expr = true } },
       ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "move down", opts = { expr = true } },
+      ["jk"] = { "<ESC>", "ESC" },
     },
 
     x = {
