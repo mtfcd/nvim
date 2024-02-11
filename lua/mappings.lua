@@ -12,8 +12,6 @@ local M = {
       ["<C-l>"] = { "<Right>", "move right" },
       ["<C-j>"] = { "<Down>", "move down" },
       ["<C-k>"] = { "<Up>", "move up" },
-
-      ["jk"] = { "<ESC>", "ESC" },
     },
 
     n = {
@@ -58,7 +56,6 @@ local M = {
     v = {
       ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "move up", opts = { expr = true } },
       ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "move down", opts = { expr = true } },
-      ["jk"] = { "<ESC>", "ESC" },
     },
 
     x = {
