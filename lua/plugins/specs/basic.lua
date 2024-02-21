@@ -182,6 +182,9 @@ return {
         result_split_horizontal = true,
         result = {
           show_curl_command = false,
+          formatters = {
+            html = "bat"
+          }
         }
       })
     end
