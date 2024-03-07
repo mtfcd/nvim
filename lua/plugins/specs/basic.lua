@@ -174,7 +174,7 @@ return {
     end,
   },
   {
-    dir = "/Users/cc/codes/rest.nvim",
+    dir = "rest-nvim/rest.nvim",
     ft = "http",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
@@ -193,7 +193,9 @@ return {
     "keaising/im-select.nvim",
     lazy = false,
     config = function()
-      require("im_select").setup({})
+      require("im_select").setup({
+        set_previous_events = {}
+      })
     end,
   }
 }
