@@ -95,12 +95,12 @@ return {
     end,
   },
   {
-    "simrat39/rust-tools.nvim",
+    "mrcjkb/rustaceanvim",
     ft = "rust",
-    dependencies = "neovim/nvim-lspconfig",
+    version = '^4',
     config = function()
-      local opts = require("plugins.configs.rust-tools")
-      require("rust-tools").setup(opts)
+      local opts = require("plugins.configs.rust")
+      vim.g.rustaceanvim = opts;
     end,
   },
   {
@@ -174,7 +174,7 @@ return {
     end,
   },
   {
-    dir = "rest-nvim/rest.nvim",
+    "rest-nvim/rest.nvim",
     ft = "http",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
