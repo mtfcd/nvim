@@ -26,9 +26,9 @@ return {
   {
     "mbbill/undotree",
     keys = "<leader>tu",
-    cmd = "Undotreetoggle",
+    cmd = "UndotreeToggle",
     init = function()
-      vim.keymap.set("n", "<leader>tu", vim.cmd.undotreetoggle, { desc = "toggle [u]ndotree" })
+      require("utils").load_mappings("undo")
     end,
     config = function()
       vim.g.undotree_splitwidth = 50
