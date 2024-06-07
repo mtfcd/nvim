@@ -1,5 +1,6 @@
 local M = {}
 M.servers = {
+  clangd = {},
   html = {},
   marksman = {},
   cssls = {},

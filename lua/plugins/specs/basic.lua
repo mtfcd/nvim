@@ -86,7 +86,8 @@ return {
   },
   {
     "numtostr/comment.nvim",
-    keys = { "<leader>/", "gcc", "gbc" },
+    -- keys = { "<leader>/", {"gcc", mode = "v"},{"gcc", mode = "n"}, "gbc" },
+    lazy = false,
     init = function()
       require("utils").load_mappings("comment")
     end,
@@ -98,6 +99,9 @@ return {
     "mrcjkb/rustaceanvim",
     ft = "rust",
     version = '^4',
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
     config = function()
       local opts = require("plugins.configs.rust")
       vim.g.rustaceanvim = opts;
@@ -175,6 +179,7 @@ return {
   },
   {
     "rest-nvim/rest.nvim",
+    version = "v1.*",
     ft = "http",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
